@@ -54,9 +54,20 @@
               </ion-card>
             </ion-col>
           </ion-row>
+          <ion-row>
+              <ion-col size-md="6" offset-md="3">
+                  <ion-list id="expenses-list"></ion-list>
+              </ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-col size-md="6" offset-md="3">
+                  <p margin>Total Expenses: <span id="total-expenses"></span></p>
+              </ion-col>
+          </ion-row>
         </ion-grid>
       </ion-content>
-      <script src="app.js"></script>
+      <ion-alert-controller></ion-alert-controller>
     </ion-app>
+    <script src="app.js"></script>
   </body>
 </html>
