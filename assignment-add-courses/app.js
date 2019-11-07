@@ -6,31 +6,38 @@ const coursesList = document.querySelector('#courses-list');
 const alertCtrl = document.querySelector('ion-alert-controller');
 
 const clear = () => {
-    courseNameInput.value = '';
-    courseRatingInput.value = '';
+  courseNameInput.value = '';
+  courseRatingInput.value = '';
 };
 
 addCourseBtn.addEventListener('click', () => {
-    const enteredCourseName = courseNameInput.value;
-    const enteredCourseRating = courseRatingInput.value;
+  const enteredCourseName = courseNameInput.value;
+  const enteredCourseRating = courseRatingInput.value;
 
-    if (enteredCourseName.trim().length <= 0 || enteredCourseRating.trim().length <= 0 || enteredCourseRating <= 0) {
-        alertCtrl.create({
-            message: 'Please enter valid course name and rating',
-            header: 'Invalid inputs',
-            buttons: ['Okay']
-        }).then(alertElement => {
-            alertElement.present();
-        });
-        return;
-    }
+  if (
+    enteredCourseName.trim().length <= 0 ||
+    enteredCourseRating.trim().length <= 0 ||
+    enteredCourseRating < 1 ||
+    enteredCourseRating > 5
+  ) {
+    alertCtrl
+      .create({
+        message: 'Please enter valid course name and rating',
+        header: 'Invalid inputs',
+        buttons: ['Okay']
+      })
+      .then(alertElement => {
+        alertElement.present();
+      });
+    return;
+  }
 
-    const newItem = document.createElement('ion-item');
-    newItem.textContent = enteredCourseName + ' - ' + enteredCourseRating + '/5'; 
+  const newItem = document.createElement('ion-item');
+  newItem.innerHTML = `<strong>${enteredCourseName}:</strong> &nbsp;${enteredCourseRating}/5 `;
 
-    coursesList.appendChild(newItem);
-    
-    clear();
+  coursesList.appendChild(newItem);
+
+  clear();
 });
 
 clearBtn.addEventListener('click', clear);
